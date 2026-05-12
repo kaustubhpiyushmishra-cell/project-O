@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* New Palette Colors */
+  --color-sunshine: #FFC926;
+  --color-cream: #F3E8CC;
+  --color-carrot: #F96015;
+  --color-tomato: #D52518;
+  --color-forest: #18542A;
+  --color-kiwi: #9ABC05;
+
+  /* Typography Scale */
+  --text-hero: 96px;
+  --text-section: 48px;
+  --text-card: 20px;
+  --text-body: 16px;
+  --text-caption: 14px;
+  
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1rem;
+
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+  --animate-shine: shine 3s ease-in-out infinite;
+}
+
+:root {
+  /* Warm Startup Theme (Sunshine & Cream) */
+  --background: #F3E8CC;
+  --foreground: #18542A;
+  --surface: #F9F0DA;
+  
+  --card: rgba(255, 255, 255, 0.6);
+  --card-foreground: #18542A;
+  
+  --popover: #F3E8CC;
+  --popover-foreground: #18542A;
+  
+  --primary: #FFC926;
+  --primary-foreground: #18542A;
+  
+  --secondary: #F96015;
+  --secondary-foreground: #FFFFFF;
+  
+  --muted: #E6D9B8;
+  --muted-foreground: #4A6351;
+  
+  --accent: #F96015;
+  --accent-foreground: #FFFFFF;
+  
+  --destructive: #D52518;
+  --border: rgba(24, 84, 42, 0.1);
+  --input: rgba(24, 84, 42, 0.1);
+  --ring: #F96015;
+  
+  --radius: 1rem;
+}
+
+.dark {
+  /* Enforce the same warm theme even in dark class for consistency as requested */
+  --background: #F3E8CC;
+  --foreground: #18542A;
+  --surface: #F9F0DA;
+  
+  --card: rgba(255, 255, 255, 0.6);
+  --card-foreground: #18542A;
+  
+  --popover: #F3E8CC;
+  --popover-foreground: #18542A;
+  
+  --primary: #FFC926;
+  --primary-foreground: #18542A;
+  
+  --secondary: #F96015;
+  --secondary-foreground: #FFFFFF;
+  
+  --muted: #E6D9B8;
+  --muted-foreground: #4A6351;
+  
+  --accent: #F96015;
+  --accent-foreground: #FFFFFF;
+  
+  --destructive: #D52518;
+  --border: rgba(24, 84, 42, 0.1);
+  --input: rgba(24, 84, 42, 0.1);
+  --ring: #F96015;
+  --muted-foreground: var(--light-100);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    @apply font-sans;
+  }
+  
+  /* Shared text classes for the VandsLAB aesthetic */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tighter uppercase font-black;
+  }
+}
+
+@layer utilities {
+  .text-hero {
+    @apply text-[10vw] sm:text-[12vw] md:text-[96px] leading-[0.85] font-black tracking-tighter uppercase;
+  }
+  .text-section {
+    @apply text-[28px] sm:text-[32px] md:text-[48px] font-bold tracking-tighter uppercase;
+  }
+  .text-card {
+    @apply text-xl md:text-2xl font-bold tracking-tight uppercase text-forest;
+  }
+  .text-body {
+    @apply text-sm sm:text-base md:text-lg text-forest/60 font-medium leading-relaxed;
+  }
+  .text-caption {
+    @apply text-xs font-bold tracking-widest uppercase text-forest/40;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  @apply bg-card backdrop-blur-xl border border-white/10 rounded-2xl;
+}
+
+/* Subtle premium motion curve */
+.premium-transition {
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-duration: 400ms;
+}
